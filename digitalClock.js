@@ -1,71 +1,79 @@
-console.log("Javascript - Digital Clock");
+console.log("JavaScript - Digital Clock Homework");
 
 let seconds = 0;
-const secondsParagraphs =document.querySelectorAll(".seconds p");
+const secondsParagraphs = document.querySelectorAll(".seconds span");
+
 let minutes = 0;
-const minutesParagraphs =document.querySelectorAll(".minutes p");
-let hours= 0;
-const hoursParagraphs =document.querySelectorAll(".hours p");
+const minutesParagraphs = document.querySelectorAll(".minutes span");
 
-setInterval(function() {
-    //const secondsString = seconds + "";
-    //const secondsStringArray = secondsString.split("");
-    //console.log(secondsStringArray);
+let hours = 0;
+const hoursParagraphs = document.querySelectorAll(".hours span");
 
-    //if (secondsStringArray.length === 2) {
-    //    secondParagraphs[0].innerText = secondsStringArray[0];
-    //    secondParagraphs[1].innerText = secondsStringArray[1];
-    //} else {
-    //    secondParagraphs[0].innerText = 0;
-    //    secondParagraphs[1].innerText = secondsStringArray[0];
-    //}
-
-    renderDigits(seconds, secondsParagraphs);
-    renderDigits(minutes, minutesParagraphs);
-    renderDigits(hours, hoursParagraphs);
+let timer;
 
 
-    //if (seconds === 59){
-    //    seconds = 0;
-    //    if(minutes === 59){
-    //        minutes = 0; 
-    //    } else {
-    //        minutes++;
-     //   }
-    //} else {
-    //    seconds++;
-    //}
+function stopwatchTimer () {
+  renderDigits(seconds, secondsParagraphs);
+  renderDigits(minutes, minutesParagraphs);
+  renderDigits(hours, hoursParagraphs);
 
-    seconds++;
+  seconds++;
 
-    if (seconds === 60) {
-        seconds = 0;
-        minutes++;
-        
-    }
+  if (seconds === 60) {
+    seconds = 0;
+    minutes++;
+  }
 
-    if (minutes === 60) {
-        minutes = 0; 
-        hours++;
-    }
+  if (minutes === 60) {
+    minutes = 0;
+    hours++;
+  }
 
-    if (hours === 24) {
-        hours = 0;
-
-    }
-
-}, 1);
+  if (hours === 24) {
+    hours = 0;
+  }
+};
 
 
 function renderDigits(nr, pList) {
-    const stringDigits = nr + "";
-    const digitList = stringDigits.split("");
+  const stringDigits = nr + "";
+  const digitList = stringDigits.split("");
 
-    if(digitList.length === 2) {
+  if (digitList.length === 2) {
     pList[0].innerText = digitList[0];
     pList[1].innerText = digitList[1];
-    } else {
+  } else {
     pList[0].innerText = 0;
     pList[1].innerText = digitList[0];
-    }
+  }
 }
+
+// starting the timer
+document.getElementById("button-start").addEventListener("click", startTime);
+function startTime(){
+  timer = setInterval(stopwatchTimer,100);
+}
+
+//stopping the timer
+document.getElementById("button-stop").addEventListener("click", stopTime);
+function stopTime(){
+  clearInterval(timer);
+}
+
+//resetting timer
+document.getElementById("button-reset").addEventListener("click", resetTime);
+  function resetTime(){
+    clearInterval(timer);
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    stopwatchTimer();
+    list.innerHTML= " "; 
+  }
+
+// saving current time
+document.getElementById("button-save").addEventListener("click", splitTime);
+  function splitTime(){
+    let split = document.getElementById('list');
+    split.innerHTML += "<li>" + " " + hrs.innerHTML +  min.innerHTML +  sec.innerHTML + "</li>";
+  }

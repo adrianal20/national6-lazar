@@ -1,7 +1,42 @@
 .digital-clock {
-    display: flex;
+  display: flex;
+  font-size:15px;
+}
+  
+.digital-clock > div {
+  display: flex;
+  margin-top:10px;
+}
+#button-start {
+  color: whitesmoke;
+  background-color: green;
+  border-radius: 10;
+}
+#button-stop {
+  color: whitesmoke;
+  background-color: green;
+  border-radius: 10;
 }
 
-.digital-clock > div {
-    display: flex;
+#button-reset {
+  color: whitesmoke;
+  background-color: green;
+  border-radius: 10;
+}
+#button-save{
+  color: whitesmoke;
+  background-color: green;
+  border-radius: 10;
+}
+ul { 
+  list-style: none;
+  padding: 5px;
+  margin:10px 0px 10px 0px;
+}
+
+li{
+  display: flex;
+  font-size: 15px;
+  padding:  10px 0px 10px 0px;
+  
 }
