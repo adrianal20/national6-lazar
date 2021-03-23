@@ -1,0 +1,97 @@
+.header{
+    display: flex;
+    align-items: center;
+    background-color: rgb(181, 148, 243);
+    height: fit-content;
+    margin-bottom: 5px;
+    width: 360px;
+}
+
+.clearData {
+    margin-top: 20px;
+    display: none;
+}
+
+.toDoList {
+    display: block;
+    align-items: center;
+    height: fit-content;
+    margin-bottom: 5px;
+}
+
+.topText {
+    height: fit-content;
+    color: white;
+    
+    font-size: 20px;
+}
+
+
+.logo {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-left: 90px;
+
+}
+
+.logo img{
+    width: 30px;
+    height: 30px;
+}
+
+
+
+.addingTask{
+    display:flex;
+    align-items: center;
+    
+    
+    
+}
+.addingTask input {
+    margin-right:5px;
+    padding:0;    
+    width: 320px;
+    height: 25px ;
+}
+
+#addButton {
+    border-radius: 100%;
+   
+    color: white;
+    border:0;
+    padding:0;
+    display: flex;
+}
+#addButton img {
+    height: 25px;
+    margin: 2px;
+}
+
+.toDoDiv {
+    display: flex;
+    align-items: center;
+    width: 360px;
+}
+
+.taskName {
+    width: 300px;
+    height: fit-content;
+    margin: 5px;
+}
+
+.taskName p{
+    height: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.deleteButton img {
+    height: 10px;
+    margin-right: 0;
+    border: none;
+}
+
+
+
+
