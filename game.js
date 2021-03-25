@@ -7,7 +7,6 @@ class GameObject {
     this.x = 0;
     this.y = 0;
     this.generateRef();
-    // this.move(50, 225);
   }
 
   generateRef() {
@@ -26,6 +25,10 @@ class GameObject {
     this.y = y;
     this.ref.style.transform = `translate(${this.x}px, ${this.y}px)`;
   }
+
+  removeRef() {
+    this.ref.remove();
+  }
 }
 
 class Player extends GameObject {
@@ -36,11 +39,11 @@ class Player extends GameObject {
   }
 
   moveUp() {
-    this.move(this.x, this.y - 25);
+    if (this.y - 25 >= 0) this.move(this.x, this.y - 25);
   }
 
   moveDown() {
-    this.move(this.x, this.y + 25);
+    if (this.y + 25 <= 500 - this.height) this.move(this.x, this.y + 25);
   }
 }
 
@@ -53,6 +56,35 @@ class Obstacle extends GameObject {
 
   moveLeft() {
     this.move(this.x - 5, this.y);
+  }
+}
+
+class ObstacleFactory {
+  constructor() {
+    this.obstacles = [];
+  }
+
+  createObstacle() {
+    const obstacle = new Obstacle();
+    obstacle.move(1060, Math.floor(Math.random() * 450));
+    this.obstacles.push(obstacle);
+  }
+
+  destroyObstacles() {
+    this.obstacles = this.obstacles.filter((obstacle) => {
+      if (obstacle.x < -50) {
+        obstacle.removeRef();
+        return false;
+      }
+
+      return true;
+    });
+  }
+
+  moveObstacles() {
+    for (const obstacle of this.obstacles) {
+      obstacle.moveLeft();
+    }
   }
 }
 
@@ -82,14 +114,48 @@ document.addEventListener("keyup", (event) => {
 
 /// --- User  input
 
-const player = new Player();
-const obstacle = new Obstacle();
+// -- Collision Detection
 
+function collisionDetection(player, obstacles) {
+  for (const obstacle of obstacles) {
+    console.log(player.x, player.x + player.width, obstacle.x);
+
+    if (
+      (player.x <= obstacle.x &&
+        obstacle.x <= player.x + player.width &&
+        player.y <= obstacle.y &&
+        obstacle.y <= player.y + player.height) ||
+      (player.x <= obstacle.x + obstacle.width &&
+        obstacle.x + obstacle.width <= player.x + player.width &&
+        player.y <= obstacle.y + obstacle.height &&
+        obstacle.y + obstacle.height <= player.y + player.height)
+    )
+      return true;
+  }
+
+  return false;
+}
+
+const player = new Player();
+const obstacleFactory = new ObstacleFactory();
+
+let count = 0;
 // Game Loop
-setInterval(() => {
+let gameLoop = setInterval(() => {
   console.log(keyUpPress);
 
   if (keyUpPress) player.moveUp();
   if (keyDownPress) player.moveDown();
-  obstacle.moveLeft();
-}, 250);
+
+  if (count % 10 === 0) obstacleFactory.createObstacle();
+
+  obstacleFactory.moveObstacles();
+  if (collisionDetection(player, obstacleFactory.obstacles)) {
+    clearInterval(gameLoop);
+    alert("You hit an obstacle");
+    window.location = "/";
+  }
+
+  obstacleFactory.destroyObstacles();
+  count++;
+}, 50);
