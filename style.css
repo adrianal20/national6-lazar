@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(243, 220, 189);
+}
+
+#generate-starship {
+    display: block;
+    width: 130px;
+    height: 50px;
+    border: none;
+    font-size: 15px;
+    color: rgb(243, 230, 213);
+    background-color: rgb(13, 102, 13);
+}
+
+.spaceship {
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin: 10px;
+    
+    
+}
+
+.spaceshipMovement {
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin: 10px;
+    
+}
