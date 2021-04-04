@@ -1,4 +1,4 @@
-console.log("OOP Game");
+console.log("OPP GAME - Adriana Lazar");
 
 class GameObject {
   constructor() {
@@ -39,11 +39,15 @@ class Player extends GameObject {
   }
 
   moveUp() {
-    if (this.y - 25 >= 0) this.move(this.x, this.y - 25);
+    if(this.y - 25>= 0)
+    this.move(this.x, this.y - 25);
+    console.log(this.y);
   }
 
   moveDown() {
-    if (this.y + 25 <= 500 - this.height) this.move(this.x, this.y + 25);
+    if(this.y + 25 <= 500 - this.height )
+    this.move(this.x, this.y + 25);
+    console.log(this.y);
   }
 }
 
@@ -112,25 +116,20 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
-/// --- User  input
-
 // -- Collision Detection
 
 function collisionDetection(player, obstacles) {
   for (const obstacle of obstacles) {
-    console.log(player.x, player.x + player.width, obstacle.x);
+    if( player.x < obstacle.x + obstacle.width &&
+        player.x + player.width > obstacle.x &&
+        player.y < obstacle.y + obstacle.height &&
+        player.y + player.height > obstacle.y){
 
-    if (
-      (player.x <= obstacle.x &&
-        obstacle.x <= player.x + player.width &&
-        player.y <= obstacle.y &&
-        obstacle.y <= player.y + player.height) ||
-      (player.x <= obstacle.x + obstacle.width &&
-        obstacle.x + obstacle.width <= player.x + player.width &&
-        player.y <= obstacle.y + obstacle.height &&
-        obstacle.y + obstacle.height <= player.y + player.height)
-    )
+      delete obstacle.width;   
+      delete obstacle.height; 
+      obstacle.removeRef();  
       return true;
+    }  
   }
 
   return false;
@@ -139,10 +138,17 @@ function collisionDetection(player, obstacles) {
 const player = new Player();
 const obstacleFactory = new ObstacleFactory();
 
+const life1 = document.getElementById("h1");
+const life2 = document.getElementById("h2");
+const life3 = document.getElementById("h3");
+
+const lives = [life1,life2,life3];
+
 let count = 0;
+
 // Game Loop
+
 let gameLoop = setInterval(() => {
-  console.log(keyUpPress);
 
   if (keyUpPress) player.moveUp();
   if (keyDownPress) player.moveDown();
@@ -151,8 +157,13 @@ let gameLoop = setInterval(() => {
 
   obstacleFactory.moveObstacles();
   if (collisionDetection(player, obstacleFactory.obstacles)) {
+    lives[lives.length-1].style.display = "none";
+    lives.pop();
+  }
+
+  if(lives.length === 0){
+    alert("You lost!");
     clearInterval(gameLoop);
-    alert("You hit an obstacle");
     window.location = "/";
   }
 
