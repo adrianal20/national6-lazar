@@ -1,7 +1,14 @@
 .app-header {
-    background: rgb(150, 125, 93);
+    background: rgb(190, 157, 94);
     width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
 }
+
+.app-header-title {
+    margin-left: 20px;
+    color: rgb(238, 228, 142);
+    font-weight: bolder;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
