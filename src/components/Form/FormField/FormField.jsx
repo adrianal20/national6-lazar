@@ -1,7 +1,7 @@
 import { Component } from "react";
-import "./FormMessage.css";
+import "./FormField.css";
 
-export class FormMessage extends Component {
+export class FormField extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,6 @@ export class FormMessage extends Component {
 
   componentDidUpdate(prevProps) {
     const { errors, id } = this.props;
-
     if (prevProps.errors.length !== errors.length) {
       if (errors.includes(id)) {
         this.setState({ red: { border: "4px solid red" } });
@@ -28,17 +27,16 @@ export class FormMessage extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="contact-form-field">
-        <p>MESSAGE</p>
-        <textarea
-          className="input-field four"
+        <p>{this.props.label}</p>
+        <input
+          className="input-field one"
           value={this.state.inputValue}
           onChange={this.handleInputChange}
           id={this.props.id}
           style={this.state.red}
-        ></textarea>
+        />
       </div>
     );
   }

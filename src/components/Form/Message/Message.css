@@ -1,0 +1,18 @@
+#all-fields-filled {
+    display: none;
+    border: 1px solid lightgray;
+    height: 30px;
+    margin-top: 20px;
+  }
+  
+  .close {
+    float: right;
+    display: inline-block;
+    padding: 2px 5px;
+    background: white;
+  }
+  
+  #all-fields-filled p {
+    margin-left: 200px;
+    margin-top: 5px;
+  }

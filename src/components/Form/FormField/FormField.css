@@ -12,9 +12,8 @@
     align-items: flex-start;
   }
   
-  .contact-form-field textarea {
+  .contact-form-field input {
     width: 300px;
-    height: 300px;
     padding: 5px;
   }
   
