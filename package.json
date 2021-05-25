@@ -1,0 +1,28 @@
+{
+  "name": "national6-olteanu",
+  "version": "1.0.0",
+  "description": "homework",
+  "main": "index.js",
+  "dependencies": {
+    "cli": "^1.0.1",
+    "lodash": "^4.17.21",
+    "webpack": "^5.32.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.6.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlteanuLucian/national6-olteanu.git"
+  },
+  "author": "Lucian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlteanuLucian/national6-olteanu/issues"
+  },
+  "homepage": "https://github.com/OlteanuLucian/national6-olteanu#readme"
+}
